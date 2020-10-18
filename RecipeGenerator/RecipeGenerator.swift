@@ -76,7 +76,7 @@ func getNamesFromCLI() -> [String]? {
     print("Recipe name 입력(공백으로 구분, ex: 모스코 뮬, Moscow Mule):")
     let names = readLine()!.split(separator: ",")
         .map(String.init)
-        .map{$0.trimmingCharacters(in: .whitespaces)}
+        .map{$0.trimmingCharacters(in: .whitespaces).precomposedStringWithCanonicalMapping}
     return names
 }
 
@@ -96,7 +96,7 @@ func getIngredientsFromCLI() -> [Ingredient]? {
         print("ingredient[\(i)] names 입력(공백으로 구분, ex: 그레나딘 시럽, Grenadine Syrup):")
         let names = readLine()!.split(separator: ",")
             .map(String.init)
-            .map{$0.trimmingCharacters(in: .whitespaces)}
+            .map{$0.trimmingCharacters(in: .whitespaces).precomposedStringWithCanonicalMapping}
         
         print("ingredient[\(i)] volume 입력(double):")
         guard let volume = Double(readLine()!) else {

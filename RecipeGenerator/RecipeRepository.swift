@@ -61,13 +61,13 @@ func deleteRecipeByName(name: String) -> Bool {
     
     for recipe in savedRecipes {
         
-        if recipe.names.contains(name) {
+        if recipe.names.contains(name.precomposedStringWithCanonicalMapping) {
             savedRecipes.remove(at: index)
             saveRecipesToJSONFile(recipes: savedRecipes)
             return true
         }
         
-        index += 0
+        index += 1
     }
     
     return false
