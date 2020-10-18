@@ -54,6 +54,23 @@ func getRecipesFromJSONFile() -> [Recipe] {
     return []
 }
 
+func deleteRecipeByName(name: String) -> Bool {
+    
+    var savedRecipes: [Recipe] = getRecipesFromJSONFile()
+    var index = 0
+    
+    for recipe in savedRecipes {
+        
+        if recipe.names.contains(name) {
+            savedRecipes.remove(at: index)
+            return true
+        }
+        
+        index += 0
+    }
+    
+    return false
+}
 
 func updateRecipe(recipe: Recipe) {
     let savedRecipes: [Recipe] = getRecipesFromJSONFile()
@@ -75,9 +92,7 @@ func updateRecipe(recipe: Recipe) {
     
 func findRecipeByNames(names: [String]) -> Recipe? {
     for name in names {
-        guard let recipes: [Recipe] = getRecipesFromJSONFile() else {
-            return nil
-        }
+        let recipes: [Recipe] = getRecipesFromJSONFile()
     
         for recipe in recipes {
             if recipe.names.contains(name) {
