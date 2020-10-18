@@ -23,10 +23,15 @@ func makeRecipeFromCommandLine () -> Recipe? {
     print("=======================================================")
     print("중단하려면 마우것도 입력하지 않고 엔터 입력!")
     
-    //TODO: redundancy check.
     names = getNamesFromCLI()!
     if names.isEmpty {
         print("취소됨!")
+        return nil
+    }
+    
+    let recipe: Recipe? = findRecipeByNames(names: names)
+    if recipe != nil {
+        print("레시피 중복!")
         return nil
     }
     
@@ -198,38 +203,4 @@ func getGlassTypeFromCLI() -> GlassType? {
 
 
 
-func updateRecipe(recipe: Recipe) {
-    
-    let savedRecipes: [Recipe] = loadSavedRecipes()
-    
-    let changedRecipes = savedRecipes.map { (currentRecipe) -> Recipe in
-        if (recipe.name == currentRecipe.name) {
-            var modifiedRecipe = currentRecipe
-            modifiedRecipe = recipe
-            return modifiedRecipe
-        }
-        else {
-            return currentRecipe
-        }
-    }
-    
-    let encoder = JSONEncoder()
-    if let encoded = try? encoder.encode(changedRecipes) {
-        let defaults = UserDefaults.standard
-        defaults.set(encoded, forKey: "SavedRecipes")
-    }
-    
-}
-    
-func findRecipeById(id: UUID) -> Recipe {
-    let savedRecipes: [Recipe] = loadSavedRecipes()
-    var foundedRecipe: Recipe!
-    
-    savedRecipes.forEach { recipe in
-        if (recipe.id == id) {
-            foundedRecipe = recipe
-        }
-    }
-    
-    return foundedRecipe
-}
+

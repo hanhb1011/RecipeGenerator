@@ -37,9 +37,9 @@ func saveRecipesToJSONFile(recipes: [Recipe]) {
     }
 }
 
-func getRecipesFromJSONFile() -> [Recipe]? {
+func getRecipesFromJSONFile() -> [Recipe] {
     
-    guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+    guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
     let fileLocation = documentDirectoryUrl.appendingPathComponent("RecipeData.json")
     
     do {
@@ -51,5 +51,40 @@ func getRecipesFromJSONFile() -> [Recipe]? {
         print(error)
     }
     
+    return []
+}
+
+
+func updateRecipe(recipe: Recipe) {
+    let savedRecipes: [Recipe] = getRecipesFromJSONFile()
+    
+    let changedRecipes = savedRecipes.map { (currentRecipe) -> Recipe in
+        if (recipe.id == currentRecipe.id) { //TODO
+            var modifiedRecipe = currentRecipe
+            modifiedRecipe = recipe
+            return modifiedRecipe
+        }
+        else {
+            return currentRecipe
+        }
+    }
+    
+    saveRecipesToJSONFile(recipes: changedRecipes)
+}
+
+    
+func findRecipeByNames(names: [String]) -> Recipe? {
+    for name in names {
+        guard let recipes: [Recipe] = getRecipesFromJSONFile() else {
+            return nil
+        }
+    
+        for recipe in recipes {
+            if recipe.names.contains(name) {
+                return recipe
+            }
+        }
+    }
+
     return nil
 }

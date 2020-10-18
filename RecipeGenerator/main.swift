@@ -9,7 +9,8 @@ import Foundation
 
 //ingredientTypeUT()
 
-var recipes: [Recipe] = []
+
+var recipes: [Recipe] = getRecipesFromJSONFile()
 
 var recipe = makeRecipeFromCommandLine()
 
