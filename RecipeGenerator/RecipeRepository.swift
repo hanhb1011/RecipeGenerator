@@ -112,7 +112,7 @@ func printRecipeNames() {
     print("====================================")
     
     for recipe in recipes {
-        print("\(index). \(recipe.names[0])")
+        print("[\(index)] \(recipe.names)")
         index += 1
     }
     

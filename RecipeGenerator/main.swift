@@ -34,30 +34,30 @@ while true {
     let command = CommandType.allCases[index]
     
     switch command {
-    case .create:
-        var recipes: [Recipe] = getRecipesFromJSONFile()
-        let recipe = makeRecipeFromCommandLine()
+        case .create:
+            var recipes: [Recipe] = getRecipesFromJSONFile()
+            let recipe = makeRecipeFromCommandLine()
 
-        if recipe != nil {
-            recipes.append(recipe!)
-        }
-        saveRecipesToJSONFile(recipes: recipes)
-        
-    case .read:
-        printRecipeNames()
-        
-    case .update:
-        print("미구현")
-        
-    case .delete:
-        print("삭제할 Recipe name 입력")
-        let name = readLine()!
-        let result = deleteRecipeByName(name: name)
-        if result == true {
-            print("삭제 성공")
-        } else {
-            print("삭제 실패")
-        }
+            if recipe != nil {
+                recipes.append(recipe!)
+                saveRecipesToJSONFile(recipes: recipes)
+            }
+            
+        case .read:
+            printRecipeNames()
+            
+        case .update:
+            print("미구현")
+            
+        case .delete:
+            print("삭제할 Recipe name 입력")
+            let name = readLine()!
+            let result = deleteRecipeByName(name: name)
+            if result == true {
+                print("삭제 성공")
+            } else {
+                print("삭제 실패")
+            }
     }
     
     

@@ -73,8 +73,10 @@ func makeRecipeFromCommandLine () -> Recipe? {
 
 
 func getNamesFromCLI() -> [String]? {
-    print("Recipe name 입력(공백으로 구분, ex: 맨해튼 맨하탄 Manhattan):")
-    let names = readLine()!.split(separator: " ").map(String.init)
+    print("Recipe name 입력(공백으로 구분, ex: 모스코 뮬, Moscow Mule):")
+    let names = readLine()!.split(separator: ",")
+        .map(String.init)
+        .map{$0.trimmingCharacters(in: .whitespaces)}
     return names
 }
 
@@ -91,10 +93,10 @@ func getIngredientsFromCLI() -> [Ingredient]? {
     }
     
     for i in (0...numIngredients - 1) {
-        print("ingredient[\(i)] name 입력:")
-        guard let name = readLine() else {
-            return nil
-        }
+        print("ingredient[\(i)] names 입력(공백으로 구분, ex: 그레나딘 시럽, Grenadine Syrup):")
+        let names = readLine()!.split(separator: ",")
+            .map(String.init)
+            .map{$0.trimmingCharacters(in: .whitespaces)}
         
         print("ingredient[\(i)] volume 입력(double):")
         guard let volume = Double(readLine()!) else {
@@ -117,7 +119,7 @@ func getIngredientsFromCLI() -> [Ingredient]? {
         
         let type = LiquidUnitType.allCases[ingredientIdx]
         
-        let ingredient = Ingredient(name: name, volume: volume, type: type)
+        let ingredient = Ingredient(names: names, volume: volume, type: type)
         
         ingredients.append(ingredient)
     }

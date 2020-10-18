@@ -26,12 +26,12 @@ struct Recipe: Codable, Identifiable {
 
 struct Ingredient: Codable, Identifiable {
     var id = UUID()
-    var name: String
+    var names: [String]
     var volume: Double
     var type: LiquidUnitType
     
-    internal init(name: String, volume: Double, type: LiquidUnitType) {
-        self.name = name
+    internal init(names: [String], volume: Double, type: LiquidUnitType) {
+        self.names = names
         self.volume = volume
         self.type = type
     }
