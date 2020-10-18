@@ -21,7 +21,7 @@ func saveRecipesToJSONFile(recipes: [Recipe]) {
         return
     }
     
-    print(jsonString)
+    //print(jsonString)
 
     // Create data to be saved
     let data = jsonString.data(using: .utf8)!
@@ -63,6 +63,7 @@ func deleteRecipeByName(name: String) -> Bool {
         
         if recipe.names.contains(name) {
             savedRecipes.remove(at: index)
+            saveRecipesToJSONFile(recipes: savedRecipes)
             return true
         }
         
@@ -102,4 +103,17 @@ func findRecipeByNames(names: [String]) -> Recipe? {
     }
 
     return nil
+}
+
+func printRecipeNames() {
+    
+    let recipes: [Recipe] = getRecipesFromJSONFile()
+    var index = 0
+    print("====================================")
+    
+    for recipe in recipes {
+        print("\(index). \(recipe.names[0])")
+        index += 1
+    }
+    
 }
