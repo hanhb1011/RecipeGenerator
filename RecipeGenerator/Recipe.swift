@@ -66,6 +66,7 @@ enum LiquidColorType: String, Codable, CaseIterable {
     case brown
     case mixed
     case none
+    case beige
 }
 
 enum LiquidUnitType: String, Codable, CaseIterable {
@@ -76,6 +77,7 @@ enum LiquidUnitType: String, Codable, CaseIterable {
     case tsp
     case pieces
     case pinch
+    case ea
     case none
 }
 
@@ -99,18 +101,6 @@ enum BehaviorType: String, Codable, CaseIterable {
     case float
     case blend
     case pour
+    case crush
+    case addIceCubes
 }
-
-
-
-/*
-  ingredients: orange rum gin
- 
- 
- 1. orage "붓다" -> ingredient[0]  .pour
- 2. rum 부어 -> ingredient[1] .pour
- 3. shake -> .shake
- 4. gin 부어버렷 -> ingredient[2] .pour
- 5. 섞어 -> .stir
- 
- */
