@@ -12,7 +12,7 @@ func makeRecipeFromCommandLine () -> Recipe? {
     //let alcoholDegree: Int
     //var ingredients: [Ingredient]
     let favoriteChecked: Bool = false
-    let recipeInformation: String = "recipe information"
+    //let recipeInformation: String = "recipe information"
     //let techniqueTypes: [TechniqueType]
     let lastTimeRecipeOpened: Date = Date()
     let latitude: Double = 0.0
@@ -42,6 +42,11 @@ func makeRecipeFromCommandLine () -> Recipe? {
     }
     
     guard let ingredients = getIngredientsFromCLI() else {
+        print("취소됨!")
+        return nil
+    }
+    
+    guard let recipeInformation = getRecipeInformationFromCLI() else {
         print("취소됨!")
         return nil
     }
@@ -203,6 +208,51 @@ func getGlassTypeFromCLI() -> GlassType? {
     return GlassType.allCases[index]
 }
 
-
+func getRecipeInformationFromCLI() -> [RecipeProcess]? {
+    var recipeProcesses: [RecipeProcess] = []
+    
+    print("총 recipeProcess 수 입력:")
+    guard let numrecipeProcesses = Int(readLine()!) else {
+        return nil
+    }
+    
+    if numrecipeProcesses <= 0 {
+        return nil
+    }
+    
+    for i in (0...numrecipeProcesses - 1) {
+        
+        print("ingredient index 선택(ingredient 없을 경우 -1이나 공백 입력):")
+        var ingredientIndex: Int? = Int(readLine()!)
+        
+        if ingredientIndex == nil {
+            ingredientIndex = -1
+        }
+        
+        print("동작 [\(i)] type 선택(숫자 입력):")
+        var index = 0
+        BehaviorType.allCases.forEach {type in
+            print("\(index). \(type.rawValue)")
+            index += 1
+        }
+        
+        guard let behaviorIndex = Int(readLine()!) else {
+            return nil
+        }
+        if index > BehaviorType.allCases.count {
+            return nil
+        }
+        
+        let type = BehaviorType.allCases[behaviorIndex]
+        
+        recipeProcesses.append(RecipeProcess(ingredientIndex: ingredientIndex!, behavior: type))
+    }
+    
+    print(recipeProcesses)
+    return recipeProcesses
+    
+    
+    
+}
 
 

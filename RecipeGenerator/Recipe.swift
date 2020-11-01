@@ -15,7 +15,7 @@ struct Recipe: Codable, Identifiable {
     var alcoholDegree: Int
     var ingredients: [Ingredient]
     var favoriteChecked: Bool
-    var RecipeInformation: String
+    var RecipeInformation: [RecipeProcess]
     var techniqueTypes: [TechniqueType]
     var lastTimeRecipeOpened: Date
     var latitude: Double
@@ -35,6 +35,19 @@ struct Ingredient: Codable, Identifiable {
         self.volume = volume
         self.type = type
     }
+}
+
+struct RecipeProcess: Codable {
+    var id = UUID()
+    var ingredientIndex: Int
+    var behavior: BehaviorType
+    
+    internal init(ingredientIndex: Int, behavior: BehaviorType) {
+        self.ingredientIndex = ingredientIndex
+        self.behavior = behavior
+    }
+    
+    
 }
 
 enum TechniqueType: String, Codable, CaseIterable {
@@ -78,3 +91,26 @@ enum GlassType: String, Codable, CaseIterable {
     case champagneGlass
     case whiteWineGlass
 }
+
+enum BehaviorType: String, Codable, CaseIterable {
+    case build
+    case stir
+    case shake
+    case float
+    case blend
+    case pour
+}
+
+
+
+/*
+  ingredients: orange rum gin
+ 
+ 
+ 1. orage "붓다" -> ingredient[0]  .pour
+ 2. rum 부어 -> ingredient[1] .pour
+ 3. shake -> .shake
+ 4. gin 부어버렷 -> ingredient[2] .pour
+ 5. 섞어 -> .stir
+ 
+ */
