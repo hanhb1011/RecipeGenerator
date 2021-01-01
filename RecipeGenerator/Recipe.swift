@@ -36,8 +36,8 @@ struct Ingredient: Codable, Identifiable {
         self.type = type
     }
 }
-
-struct RecipeProcess: Codable {
+	
+struct RecipeProcess: Codable, Identifiable {
     var id = UUID()
     var ingredientIndex: Int
     var behavior: BehaviorType
@@ -103,4 +103,5 @@ enum BehaviorType: String, Codable, CaseIterable {
     case pour
     case crush
     case addIceCubes
+    case fillup
 }
