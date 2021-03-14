@@ -12,6 +12,7 @@
 		6660F816253AF1EB00F392C5 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660F815253AF1EB00F392C5 /* RecipeRepository.swift */; };
 		6660F819253AF87C00F392C5 /* RecipeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660F818253AF87C00F392C5 /* RecipeGenerator.swift */; };
 		6660F81C253B211900F392C5 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660F81B253B211900F392C5 /* UnitTests.swift */; };
+		66E5D7C325FDF58000700367 /* IngredientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E5D7C225FDF58000700367 /* IngredientManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,7 @@
 		6660F815253AF1EB00F392C5 /* RecipeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		6660F818253AF87C00F392C5 /* RecipeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeGenerator.swift; sourceTree = "<group>"; };
 		6660F81B253B211900F392C5 /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
+		66E5D7C225FDF58000700367 /* IngredientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				6660F812253AEFAD00F392C5 /* Recipe.swift */,
 				6660F818253AF87C00F392C5 /* RecipeGenerator.swift */,
 				6660F81B253B211900F392C5 /* UnitTests.swift */,
+				66E5D7C225FDF58000700367 /* IngredientManager.swift */,
 			);
 			path = RecipeGenerator;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				6660F80B253AEE2100F392C5 /* main.swift in Sources */,
 				6660F813253AEFAD00F392C5 /* Recipe.swift in Sources */,
 				6660F81C253B211900F392C5 /* UnitTests.swift in Sources */,
+				66E5D7C325FDF58000700367 /* IngredientManager.swift in Sources */,
 				6660F819253AF87C00F392C5 /* RecipeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ enum CommandType: CaseIterable {
     case read
     case update
     case delete
+    case printIngredients
 }
 
 while true {
@@ -21,6 +22,7 @@ while true {
     print("1. 저장된 레시피 출력")
     print("2. 레시피 업데이트 (미구현)")
     print("3. 레시피 제거")
+    print("4. 재료 출력")
     print("command 입력(숫자):")
     
     guard let index = Int(readLine()!) else {
@@ -58,6 +60,9 @@ while true {
             } else {
                 print("삭제 실패")
             }
+            
+        case .printIngredients:
+            printIngredients()
     }
     
     
