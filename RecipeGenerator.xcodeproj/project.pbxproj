@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6653B4982620A77A0096A0A5 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6653B4972620A77A0096A0A5 /* Classification.swift */; };
 		6660F80B253AEE2100F392C5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660F80A253AEE2100F392C5 /* main.swift */; };
 		6660F813253AEFAD00F392C5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660F812253AEFAD00F392C5 /* Recipe.swift */; };
 		6660F816253AF1EB00F392C5 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660F815253AF1EB00F392C5 /* RecipeRepository.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6653B4972620A77A0096A0A5 /* Classification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
 		6660F807253AEE2100F392C5 /* RecipeGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RecipeGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		6660F80A253AEE2100F392C5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6660F812253AEFAD00F392C5 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				6660F818253AF87C00F392C5 /* RecipeGenerator.swift */,
 				6660F81B253B211900F392C5 /* UnitTests.swift */,
 				66E5D7C225FDF58000700367 /* IngredientManager.swift */,
+				6653B4972620A77A0096A0A5 /* Classification.swift */,
 			);
 			path = RecipeGenerator;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			files = (
 				6660F816253AF1EB00F392C5 /* RecipeRepository.swift in Sources */,
 				6660F80B253AEE2100F392C5 /* main.swift in Sources */,
+				6653B4982620A77A0096A0A5 /* Classification.swift in Sources */,
 				6660F813253AEFAD00F392C5 /* Recipe.swift in Sources */,
 				6660F81C253B211900F392C5 /* UnitTests.swift in Sources */,
 				66E5D7C325FDF58000700367 /* IngredientManager.swift in Sources */,
