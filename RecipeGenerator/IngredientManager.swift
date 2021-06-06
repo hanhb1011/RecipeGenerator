@@ -125,10 +125,10 @@ func saveClassificationsToJSONFile(classifications: [Classification]) {
 func createClassification() {
     
     let ingredients : [String] = getIngredients()
-    var classifications: [Classification] = [Classification(index: 0, name: "기주")
-                                             , Classification(index: 1, name: "리큐어")
-                                             , Classification(index: 2, name: "주스")
-                                             , Classification(index: 3, name: "기타")]
+    var classifications: [Classification] = [Classification(index: 0, name: "기주", ingredientSearchItems: [])
+                                             , Classification(index: 1, name: "리큐어", ingredientSearchItems: [])
+                                             , Classification(index: 2, name: "주스", ingredientSearchItems: [])
+                                             , Classification(index: 3, name: "기타", ingredientSearchItems: [])]
     
     ingredients.forEach { ingredient in
         print("name: \(ingredient) 분류 선택 (0: 기주, 1: 리큐어, 2: 주스, 3: 기타) -> ")
@@ -138,7 +138,7 @@ func createClassification() {
             return
         }
         
-        classifications[idx].ingredientSearchItems.append(ingredient)
+        classifications[idx].ingredientSearchItems.append(IngredientSearchItem(ingredientName: ingredient, selected: false))
         
     }
     
@@ -151,3 +151,25 @@ func printClassification() {
     let clssifications = getClassificationsFromJSONFile()
     print(clssifications)
 }
+
+/*
+func recreateClassification() {
+    let classifications = getClassificationsFromJSONFile()
+    
+    var newClassifications: [NewClassification] = []
+    
+    classifications.forEach { oldClassification in
+        
+        var newClassification = NewClassification(index: oldClassification.index, name: oldClassification.name, ingredientSearchItems: [])
+        
+        oldClassification.ingredientSearchItems.forEach { oldItem in
+            
+            newClassification.ingredientSearchItems.append(IngredientSearchItem(ingredientName: oldItem, selected: false))
+        }
+        
+        newClassifications.append(newClassification)
+    }
+    
+    saveNewClassificationsToJSONFile(classifications: newClassifications)
+}
+*/
