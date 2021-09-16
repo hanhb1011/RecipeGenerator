@@ -14,7 +14,7 @@ func makeRecipeFromCommandLine () -> Recipe? {
     let favoriteChecked: Bool = false
     //let recipeInformation: String = "recipe information"
     //let techniqueTypes: [TechniqueType]
-    let lastTimeRecipeOpened: Date = Date()
+    let lastTimeRecipeOpened: Date = nil
     let latitude: Double = 0.0
     let longitude: Double = 0.0
     //let liquidColor: LiquidColorType

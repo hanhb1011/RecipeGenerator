@@ -16,6 +16,7 @@ enum CommandType: CaseIterable {
     case printIngredients
     case createClassification
     case printClassification
+    case test
 }
 
 while true {
@@ -27,6 +28,7 @@ while true {
     print("4. 재료 출력 & 저장")
     print("5. 분류 생성")
     print("6. 분류 출력")
+    print("7. 시간초기화")
     print("command 입력(숫자):")
     
     guard let index = Int(readLine()!) else {
@@ -40,39 +42,40 @@ while true {
     let command = CommandType.allCases[index]
     
     switch command {
-        case .create:
-            var recipes: [Recipe] = getRecipesFromJSONFile()
-            let recipe = makeRecipeFromCommandLine()
-
-            if recipe != nil {
-                recipes.append(recipe!)
-                saveRecipesToJSONFile(recipes: recipes)
-            }
-            
-        case .read:
-            printRecipeNames()
-            
-        case .update:
-            print("미구현")
-            
-        case .delete:
-            print("삭제할 Recipe name 입력")
-            let name = readLine()!
-            let result = deleteRecipeByName(name: name)
-            if result == true {
-                print("삭제 성공")
-            } else {
-                print("삭제 실패")
-            }
-            
-        case .printIngredients:
-            saveIngredients()
-            
-        case .createClassification:
-            createClassification()
-            
-        case .printClassification:
-            printClassification()
+    case .create:
+        var recipes: [Recipe] = getRecipesFromJSONFile()
+        let recipe = makeRecipeFromCommandLine()
+        
+        if recipe != nil {
+            recipes.append(recipe!)
+            saveRecipesToJSONFile(recipes: recipes)
+        }
+        
+    case .read:
+        printRecipeNames()
+        
+    case .update:
+        print("미구현")
+        
+    case .delete:
+        print("삭제할 Recipe name 입력")
+        let name = readLine()!
+        let result = deleteRecipeByName(name: name)
+        if result == true {
+            print("삭제 성공")
+        } else {
+            print("삭제 실패")
+        }
+        
+    case .printIngredients:
+        saveIngredients()
+        
+    case .createClassification:
+        createClassification()
+        
+    case .printClassification:
+        printClassification()
+        
     }
     
     

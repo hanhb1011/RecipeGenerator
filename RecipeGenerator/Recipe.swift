@@ -17,7 +17,7 @@ struct Recipe: Codable, Identifiable {
     var favoriteChecked: Bool
     var RecipeInformation: [RecipeProcess]
     var techniqueTypes: [TechniqueType]
-    var lastTimeRecipeOpened: Date
+    var lastTimeRecipeOpened: Date?
     var latitude: Double
     var longitude: Double
     var liquidColor: LiquidColorType
@@ -69,6 +69,7 @@ enum LiquidColorType: String, Codable, CaseIterable {
     case beige
     case green
     case black
+    case white
 }
 
 enum LiquidUnitType: String, Codable, CaseIterable {
