@@ -76,6 +76,8 @@ while true {
     case .printClassification:
         printClassification()
         
+    case .test:
+        updateAllrecipes()
     }
     
     

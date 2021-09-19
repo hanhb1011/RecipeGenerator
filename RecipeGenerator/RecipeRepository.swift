@@ -117,3 +117,15 @@ func printRecipeNames() {
     }
     
 }
+
+func updateAllrecipes() {
+    
+    let savedRecipes: [Recipe] = getRecipesFromJSONFile()
+    
+    let updatedRecipes = savedRecipes.map { recipe -> Recipe in
+        var newRecipe: Recipe = recipe
+        newRecipe.lastTimeRecipeOpened = nil
+        return newRecipe
+    }
+    saveRecipesToJSONFile(recipes: updatedRecipes)
+}

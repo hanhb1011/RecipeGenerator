@@ -9,16 +9,10 @@ import Foundation
 
 func makeRecipeFromCommandLine () -> Recipe? {
     var names: [String]
-    //let alcoholDegree: Int
-    //var ingredients: [Ingredient]
     let favoriteChecked: Bool = false
-    //let recipeInformation: String = "recipe information"
-    //let techniqueTypes: [TechniqueType]
-    let lastTimeRecipeOpened: Date = nil
+    let lastTimeRecipeOpened: Date? = nil
     let latitude: Double = 0.0
     let longitude: Double = 0.0
-    //let liquidColor: LiquidColorType
-    //let glassType: GlassType
     
     print("=======================================================")
     print("중단하려면 마우것도 입력하지 않고 엔터 입력!")
