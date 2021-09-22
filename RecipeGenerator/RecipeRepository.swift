@@ -120,12 +120,31 @@ func printRecipeNames() {
 
 func updateAllrecipes() {
     
-    let savedRecipes: [Recipe] = getRecipesFromJSONFile()
+    var recipes: [Recipe] = getRecipesFromJSONFile()
     
-    let updatedRecipes = savedRecipes.map { recipe -> Recipe in
-        var newRecipe: Recipe = recipe
-        newRecipe.lastTimeRecipeOpened = nil
-        return newRecipe
+    
+    for i in (0..<recipes.count) {
+        
+        for j in (0..<recipes[i].ingredients.count) {
+            for k in (0..<recipes[i].ingredients[j].names.count) {
+                if (recipes[i].ingredients[j].names[k] == "소다수") {
+                    
+                    if (2 == recipes[i].ingredients[j].names.count) {
+                        recipes[i].ingredients[j].names[k] = "탄산수"
+                    }
+                    else {
+                        recipes[i].ingredients[j].names.remove(at: k)
+                    }
+                    
+                    print(recipes[i].ingredients[j].names)
+                    break
+                }
+            }
+        }
+        
     }
-    saveRecipesToJSONFile(recipes: updatedRecipes)
+    
+    
+    
+    //saveRecipesToJSONFile(recipes: recipes)
 }
