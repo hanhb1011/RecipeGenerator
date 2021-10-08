@@ -17,6 +17,7 @@ enum CommandType: CaseIterable {
     case createClassification
     case printClassification
     case test
+    case printAllGlasses
 }
 
 while true {
@@ -28,7 +29,8 @@ while true {
     print("4. 재료 출력 & 저장")
     print("5. 분류 생성")
     print("6. 분류 출력")
-    print("7. 시간초기화")
+    print("7. 모든 칵테일 업데이트")
+    print("8. 잔 & 색깔 출력")
     print("command 입력(숫자):")
     
     guard let index = Int(readLine()!) else {
@@ -78,6 +80,9 @@ while true {
         
     case .test:
         updateAllrecipes()
+        
+    case .printAllGlasses:
+        printAllGlasses()
     }
     
     

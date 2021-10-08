@@ -148,3 +148,25 @@ func updateAllrecipes() {
     
     //saveRecipesToJSONFile(recipes: recipes)
 }
+
+func printAllGlasses() {
+    let recipes: [Recipe] = getRecipesFromJSONFile()
+    
+    //1. color dictionary
+    var glassDictionary: [GlassType:[LiquidColorType]] = [:]
+    GlassType.allCases.forEach { type in
+        glassDictionary[type] = []
+    }
+    //2. build color dict.
+    
+    recipes.forEach { recipe in
+        let glassType = recipe.glassType
+        let color = recipe.liquidColor
+        
+        glassDictionary[glassType]?.append(color)
+    }
+    
+    //3. print color dict.
+    
+    print(glassDictionary)
+}
