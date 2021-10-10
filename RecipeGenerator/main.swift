@@ -7,7 +7,6 @@
 
 import Foundation
 
-//ingredientTypeUT()
 enum CommandType: CaseIterable {
     case create
     case read
@@ -18,6 +17,8 @@ enum CommandType: CaseIterable {
     case printClassification
     case test
     case printAllGlasses
+    case printTargetIngredients
+    case updateGarnish
 }
 
 while true {
@@ -31,6 +32,8 @@ while true {
     print("6. 분류 출력")
     print("7. 모든 칵테일 업데이트")
     print("8. 잔 & 색깔 출력")
+    print("9. target 재료 출력")
+    print("10. 가니쉬 입력")
     print("command 입력(숫자):")
     
     guard let index = Int(readLine()!) else {
@@ -83,6 +86,12 @@ while true {
         
     case .printAllGlasses:
         printAllGlasses()
+        
+    case .printTargetIngredients:
+        printTargetIngredients(target: "또는")
+        
+    case .updateGarnish:
+        updateGarnish()
     }
     
     

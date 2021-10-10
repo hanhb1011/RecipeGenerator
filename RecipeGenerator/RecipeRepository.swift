@@ -22,10 +22,10 @@ func saveRecipesToJSONFile(recipes: [Recipe]) {
     }
     
     //print(jsonString)
-
+    
     // Create data to be saved
     let data = jsonString.data(using: .utf8)!
-
+    
     guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
     let fileUrl = documentDirectoryUrl.appendingPathComponent("RecipeData.json")
     
@@ -90,18 +90,18 @@ func updateRecipe(recipe: Recipe) {
     saveRecipesToJSONFile(recipes: changedRecipes)
 }
 
-    
+
 func findRecipeByNames(names: [String]) -> Recipe? {
     for name in names {
         let recipes: [Recipe] = getRecipesFromJSONFile()
-    
+        
         for recipe in recipes {
             if recipe.names.contains(name) {
                 return recipe
             }
         }
     }
-
+    
     return nil
 }
 
@@ -127,14 +127,10 @@ func updateAllrecipes() {
         
         for j in (0..<recipes[i].ingredients.count) {
             for k in (0..<recipes[i].ingredients[j].names.count) {
-                if (recipes[i].ingredients[j].names[k] == "소다수") {
+                if (recipes[i].ingredients[j].names[0] == "피치 비터스") {
                     
-                    if (2 == recipes[i].ingredients[j].names.count) {
-                        recipes[i].ingredients[j].names[k] = "탄산수"
-                    }
-                    else {
-                        recipes[i].ingredients[j].names.remove(at: k)
-                    }
+                    recipes[i].ingredients[j].names[0] = "피치 비터"
+                    recipes[i].ingredients[j].names[1] = "복숭아 비터"
                     
                     print(recipes[i].ingredients[j].names)
                     break
@@ -144,8 +140,6 @@ func updateAllrecipes() {
         
     }
     
-    
-    
     //saveRecipesToJSONFile(recipes: recipes)
 }
 
@@ -153,7 +147,7 @@ func printAllGlasses() {
     let recipes: [Recipe] = getRecipesFromJSONFile()
     
     //1. color dictionary
-    var glassDictionary: [GlassType:[LiquidColorType]] = [:]
+    var glassDictionary: [GlassType:Set<LiquidColorType>] = [:]
     GlassType.allCases.forEach { type in
         glassDictionary[type] = []
     }
@@ -163,10 +157,60 @@ func printAllGlasses() {
         let glassType = recipe.glassType
         let color = recipe.liquidColor
         
-        glassDictionary[glassType]?.append(color)
+        glassDictionary[glassType]?.insert(color)
     }
     
     //3. print color dict.
     
     print(glassDictionary)
+}
+
+func printTargetIngredients(target: String) {
+    let recipes: [Recipe] = getRecipesFromJSONFile()
+    
+    for i in (0..<recipes.count) {
+        
+        for j in (0..<recipes[i].ingredients.count) {
+            for k in (0..<recipes[i].ingredients[j].names.count) {
+                var found = false
+                if (recipes[i].ingredients[j].names[k].contains(target)) {
+                    found = true
+                }
+                
+                if (found) {
+                    print(recipes[i].ingredients[j].names)
+                }
+            }
+        }
+    }
+    
+}
+
+func printAllIngredients(target: String) {
+    let recipes: [Recipe] = getRecipesFromJSONFile()
+    
+    for i in (0..<recipes.count) {
+        for j in (0..<recipes[i].ingredients.count) {
+            print(recipes[i].ingredients[j].names)
+        }
+    }
+    
+}
+
+func updateGarnish() {
+    var recipes: [Recipe] = getRecipesFromJSONFile()
+    
+    for i in (0..<recipes.count) {
+        print("\(recipes[i].names[0]) garnish 입력 (없으면 엔터): ")
+        
+        let garnish: String = readLine()!.trimmingCharacters(in: .whitespaces).precomposedStringWithCanonicalMapping
+         
+        if (garnish.count != 0) {
+            recipes[i].garnish = garnish
+        }
+        
+        print(recipes[i].garnish)
+    }
+    
+    saveRecipesToJSONFile(recipes: recipes)
 }
