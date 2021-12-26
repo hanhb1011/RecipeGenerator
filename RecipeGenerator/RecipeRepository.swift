@@ -124,23 +124,25 @@ func updateAllrecipes() {
     
     
     for i in (0..<recipes.count) {
-        
-        for j in (0..<recipes[i].ingredients.count) {
-            for k in (0..<recipes[i].ingredients[j].names.count) {
-                if (recipes[i].ingredients[j].names[0] == "피치 비터스") {
-                    
-                    recipes[i].ingredients[j].names[0] = "피치 비터"
-                    recipes[i].ingredients[j].names[1] = "복숭아 비터"
-                    
-                    print(recipes[i].ingredients[j].names)
-                    break
-                }
+        if (recipes[i].liquidColor == .none || recipes[i].liquidColor == .yellow || recipes[i].liquidColor == .white) {
+            
+            
+            print(recipes[i].names)
+            print(recipes[i].liquidColor)
+            print("바꿉니까? 1 / any number  >>")
+            guard let index = Int(readLine()!) else {
+                continue
             }
+            
+            if (1 == index) {
+                recipes[i].liquidColor = .lightYellow
+            }
+            
+            print(recipes[i])
         }
-        
     }
     
-    //saveRecipesToJSONFile(recipes: recipes)
+    saveRecipesToJSONFile(recipes: recipes)
 }
 
 func printAllGlasses() {
