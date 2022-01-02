@@ -124,21 +124,12 @@ func updateAllrecipes() {
     
     
     for i in (0..<recipes.count) {
-        if (recipes[i].liquidColor == .none || recipes[i].liquidColor == .yellow || recipes[i].liquidColor == .white) {
-            
-            
-            print(recipes[i].names)
-            print(recipes[i].liquidColor)
-            print("바꿉니까? 1 / any number  >>")
-            guard let index = Int(readLine()!) else {
-                continue
-            }
-            
-            if (1 == index) {
-                recipes[i].liquidColor = .lightYellow
-            }
-            
-            print(recipes[i])
+        if (recipes[i].glassType == .sourGlass) {
+            recipes[i].glassType = .whiteWineGlass
+            print("\(recipes[i].names[0]) changed")
+        } else if(recipes[i].glassType == .stemmedLiqueurGlass) {
+            recipes[i].glassType = .sherryGlass
+            print("\(recipes[i].names[0]) changed")
         }
     }
     
@@ -159,12 +150,26 @@ func printAllGlasses() {
         let glassType = recipe.glassType
         let color = recipe.liquidColor
         
-        glassDictionary[glassType]?.insert(color)
+        if (glassDictionary[glassType] != nil) {
+            glassDictionary[glassType]?.insert(color)
+        }
     }
     
     //3. print color dict.
+    glassDictionary.forEach { dict in
+        print(dict)
+    }
     
-    print(glassDictionary)
+    let glassList:[GlassType] = [.sourGlass, .stemmedLiqueurGlass, .sherryGlass]
+    
+    glassList.forEach { glassType in
+        print(glassType)
+        for i in (0..<recipes.count) {
+            if (recipes[i].glassType == glassType) {
+                print("\(recipes[i].names[0]) color: \(recipes[i].liquidColor.rawValue)")
+            }
+        }
+    }
 }
 
 func printTargetIngredients(target: String) {
@@ -206,7 +211,7 @@ func updateGarnish() {
         print("\(recipes[i].names[0]) garnish 입력 (없으면 엔터): ")
         
         let garnish: String = readLine()!.trimmingCharacters(in: .whitespaces).precomposedStringWithCanonicalMapping
-         
+        
         if (garnish.count != 0) {
             recipes[i].garnish = garnish
         }
