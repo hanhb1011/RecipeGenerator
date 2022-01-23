@@ -160,6 +160,7 @@ func printAllGlasses() {
         print(dict)
     }
     
+    /*
     let glassList:[GlassType] = [.sourGlass, .stemmedLiqueurGlass, .sherryGlass]
     
     glassList.forEach { glassType in
@@ -168,6 +169,27 @@ func printAllGlasses() {
             if (recipes[i].glassType == glassType) {
                 print("\(recipes[i].names[0]) color: \(recipes[i].liquidColor.rawValue)")
             }
+        }
+    }
+    
+     */
+    GlassType.allCases.forEach { glassType in
+        print("Type: \(glassType.rawValue)")
+        for i in (0..<recipes.count) {
+            if (recipes[i].glassType == glassType) {
+                print("\(recipes[i].names[0]) color: \(recipes[i].liquidColor.rawValue)")
+            }
+        }
+        print("")
+    }
+    
+    print("\nmixed color")
+    recipes.forEach { recipe in
+        let glassType = recipe.glassType
+        let color = recipe.liquidColor
+        
+        if (color == .mixed) {
+            print("name: \(recipe.names[0]) glasstype: \(glassType)")
         }
     }
 }
