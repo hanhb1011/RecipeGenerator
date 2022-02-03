@@ -122,14 +122,27 @@ func updateAllrecipes() {
     
     var recipes: [Recipe] = getRecipesFromJSONFile()
     
+    var count = 0
+    var currentCount = 0
+    for i in (0..<recipes.count) {
+        if ((recipes[i].liquidColor == .brown) || (recipes[i].liquidColor == .black))
+        {
+            count += 1
+        }
+    }
+    print("total count: \(count)")
     
     for i in (0..<recipes.count) {
-        if (recipes[i].glassType == .sourGlass) {
-            recipes[i].glassType = .whiteWineGlass
-            print("\(recipes[i].names[0]) changed")
-        } else if(recipes[i].glassType == .stemmedLiqueurGlass) {
-            recipes[i].glassType = .sherryGlass
-            print("\(recipes[i].names[0]) changed")
+        if ((recipes[i].glassType == .oldFashonedGlass) && (recipes[i].liquidColor == .none))
+        {
+            currentCount += 1
+            
+            print("\(recipes[i].names[0]) \(currentCount) / \(count) change? (1 any character)")
+            let input = Int(readLine()!)
+            
+            if (1 == input) {
+                print("changed to \(recipes[i].liquidColor)")
+            }
         }
     }
     
@@ -191,6 +204,96 @@ func printAllGlasses() {
         if (color == .mixed) {
             print("name: \(recipe.names[0]) glasstype: \(glassType)")
         }
+    }
+    
+    printAllImageNames()
+}
+
+
+func getNameOfGlass(glassType: GlassType) -> String {
+    var adjsutedGlassType: String = glassType.rawValue
+    
+    /*
+     stemmedLiqueurGlass -> sherryGlass
+     cocktailGlass
+     oldFashonedGlass
+     highballGlass
+     footedPilsnerGlass
+     sourGlass
+     collinsGlass
+     sherryGlass
+     champagneGlass
+     whiteWineGlass
+     */
+    
+    switch (glassType) {
+    case .sourGlass:
+        adjsutedGlassType = "whiteWineGlass"
+    case .stemmedLiqueurGlass:
+        adjsutedGlassType = "shotGlass"
+    case .cocktailGlass:
+        break
+    case .oldFashonedGlass:
+        break
+    case .highballGlass:
+        break
+    case .footedPilsnerGlass:
+        adjsutedGlassType = "highballGlass"
+    case .collinsGlass:
+        adjsutedGlassType = "highballGlass"
+    case .sherryGlass:
+        adjsutedGlassType = "shotGlass"
+        break
+    case .champagneGlass:
+        break
+    case .whiteWineGlass:
+        break
+    }
+    
+    return adjsutedGlassType
+}
+
+func getImageNameOfMixedColor(recipe: Recipe) -> String {
+    
+    if (recipe.names[0] == "커비 블루") {
+        return "Cubby Blue"
+    }
+    else if (recipe.names[0] == "B-52") {
+        return "B-52"
+    }
+    
+    return recipe.names[1]
+}
+
+func isValidName(imageName: String) -> Bool {
+    return true
+}
+
+func getCocktailImageName(recipe: Recipe) -> String {
+    let glass: String = getNameOfGlass(glassType: recipe.glassType)
+    let liquidColor: String = recipe.liquidColor.rawValue
+    var imageName: String
+    
+    if (.mixed == recipe.liquidColor) {
+        imageName = getImageNameOfMixedColor(recipe: recipe)
+    } else {
+        imageName = glass + "_" + liquidColor
+    }
+    
+    //check
+    if (true == isValidName(imageName: imageName)) {
+        return imageName
+    } else {
+        return glass + "_none"
+    }
+    
+}
+
+func printAllImageNames() -> Void {
+    let recipes: [Recipe] = getRecipesFromJSONFile()
+    
+    recipes.forEach { recipe in
+        print("recipe name: \(recipe.names[0]), image name: " + getCocktailImageName(recipe: recipe))
     }
 }
 
